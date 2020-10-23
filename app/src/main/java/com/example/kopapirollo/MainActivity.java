@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView imageHp1Gep, imageHp2Gep, imageHp3Gep, imageHp1Jatekos, imageHp2Jatekos, imageHp3Jatekos, gepValaszt, JatekosValaszt;
+    private ImageView imageHp1Gep, imageHp2Gep, imageHp3Gep, imageHp1Jatekos, imageHp2Jatekos, imageHp3Jatekos, gepValaszt, jatekosValaszt;
     private ImageButton buttonKo, buttonPapir, buttonOllo;
     private TextView textX;
     private Random r;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         imageHp2Jatekos = findViewById(R.id.iv_hp5);
         imageHp3Jatekos = findViewById(R.id.iv_hp6);
         gepValaszt = findViewById(R.id.iv_GepValasztasa);
-        JatekosValaszt = findViewById(R.id.iv_JatekosValasztasa);
+        jatekosValaszt = findViewById(R.id.iv_JatekosValasztasa);
         buttonKo = findViewById(R.id.ib_ko);
         buttonPapir = findViewById(R.id.ib_papir);
         buttonOllo = findViewById(R.id.ib_ollo);
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         imageHp2Gep.setImageResource(R.drawable.heart2);
                         imageHp3Gep.setImageResource(R.drawable.heart2);
                         imageHp1Jatekos.setImageResource(R.drawable.heart2);
-                        imageHp3Jatekos.setImageResource(R.drawable.heart2);
+                        imageHp2Jatekos.setImageResource(R.drawable.heart2);
                         imageHp3Jatekos.setImageResource(R.drawable.heart2);
                         textX.setText("Döntetlenek száma: 0");
                     }
@@ -77,6 +78,164 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false);
         felugroUzenet = felugroUzenetbuilder.create();
 
-
+        buttonKo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jatekosValaszt.setImageResource(R.drawable.rock);
+                int gepValasztas = r.nextInt(3);
+                if (gepValasztas == 0) {
+                    gepValaszt.setImageResource(R.drawable.rock);
+                    dontetlen++;
+                    textX.setText("Döntetlenek száma: "+dontetlen);
+                    Toast.makeText(MainActivity.this,"Döntetlen", Toast.LENGTH_SHORT).show();
+                }
+                else if(gepValasztas == 1){
+                    gepValaszt.setImageResource(R.drawable.paper);
+                    gepPontjai++;
+                    if (gepPontjai == 3){
+                        felugroUzenet.show();
+                    }
+                    else
+                        Toast.makeText(MainActivity.this,"Gép vitte a kört", Toast.LENGTH_SHORT).show();
+                    switch (gepPontjai) {
+                        case 1:
+                            imageHp3Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                        case 2:
+                            imageHp2Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                        case 3:
+                            imageHp1Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                    }
+                }
+                else {
+                    gepValaszt.setImageResource(R.drawable.scissors);
+                    jatekosPontjai++;
+                    if(jatekosPontjai == 3){
+                        felugroUzenet.show();
+                    }
+                    else
+                        Toast.makeText(MainActivity.this,"Te vitted a kört", Toast.LENGTH_SHORT).show();
+                    switch (jatekosPontjai) {
+                        case 1:
+                            imageHp1Gep.setImageResource(R.drawable.heart1);
+                            break;
+                        case 2:
+                            imageHp2Gep.setImageResource(R.drawable.heart1);
+                            break;
+                        case 3:
+                            imageHp3Gep.setImageResource(R.drawable.heart1);
+                            break;
+                    }
+                }
+            }
+        });
+        buttonPapir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jatekosValaszt.setImageResource(R.drawable.paper);
+                int gepValasztas = r.nextInt(3);
+                if (gepValasztas == 0) {
+                    gepValaszt.setImageResource(R.drawable.rock);
+                    jatekosPontjai++;
+                    if(jatekosPontjai == 3){
+                        felugroUzenet.show();
+                    }
+                    else
+                        Toast.makeText(MainActivity.this,"Te vitted a kört", Toast.LENGTH_SHORT).show();
+                    switch (jatekosPontjai) {
+                        case 1:
+                            imageHp1Gep.setImageResource(R.drawable.heart1);
+                            break;
+                        case 2:
+                            imageHp2Gep.setImageResource(R.drawable.heart1);
+                            break;
+                        case 3:
+                            imageHp3Gep.setImageResource(R.drawable.heart1);
+                            break;
+                    }
+                }
+                else if(gepValasztas == 1){
+                    gepValaszt.setImageResource(R.drawable.paper);
+                    dontetlen++;
+                    textX.setText("Döntetlenek száma: "+dontetlen);
+                    Toast.makeText(MainActivity.this,"Döntetlen", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    gepValaszt.setImageResource(R.drawable.scissors);
+                    gepPontjai++;
+                    if (gepPontjai == 3){
+                        felugroUzenet.show();
+                    }
+                    else
+                        Toast.makeText(MainActivity.this,"Gép vitte a kört", Toast.LENGTH_SHORT).show();
+                    switch (gepPontjai) {
+                        case 1:
+                            imageHp3Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                        case 2:
+                            imageHp2Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                        case 3:
+                            imageHp1Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                    }
+                }
+            }
+        });
+        buttonOllo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jatekosValaszt.setImageResource(R.drawable.scissors);
+                int gepValasztas = r.nextInt(3);
+                if (gepValasztas == 0) {
+                    gepValaszt.setImageResource(R.drawable.rock);
+                    gepPontjai++;
+                    if (gepPontjai == 3){
+                        felugroUzenet.show();
+                    }
+                    else
+                        Toast.makeText(MainActivity.this,"Gép vitte a kört", Toast.LENGTH_SHORT).show();
+                    switch (gepPontjai) {
+                        case 1:
+                            imageHp3Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                        case 2:
+                            imageHp2Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                        case 3:
+                            imageHp1Jatekos.setImageResource(R.drawable.heart1);
+                            break;
+                    }
+                }
+                else if(gepValasztas == 1){
+                    gepValaszt.setImageResource(R.drawable.paper);
+                    jatekosPontjai++;
+                    if(jatekosPontjai == 3){
+                        felugroUzenet.show();
+                    }
+                    else
+                        Toast.makeText(MainActivity.this,"Te vitted a kört", Toast.LENGTH_SHORT).show();
+                    switch (jatekosPontjai) {
+                        case 1:
+                            imageHp1Gep.setImageResource(R.drawable.heart1);
+                            break;
+                        case 2:
+                            imageHp2Gep.setImageResource(R.drawable.heart1);
+                            break;
+                        case 3:
+                            imageHp3Gep.setImageResource(R.drawable.heart1);
+                            break;
+                    }
+                }
+                else {
+                    gepValaszt.setImageResource(R.drawable.scissors);
+                    dontetlen++;
+                    textX.setText("Döntetlenek száma: "+dontetlen);
+                    Toast.makeText(MainActivity.this,"Döntetlen", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
