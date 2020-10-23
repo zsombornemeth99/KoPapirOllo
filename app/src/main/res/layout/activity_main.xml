@@ -71,13 +71,14 @@
             android:layout_height="wrap_content"
             android:text="Döntetlenek száma:"
             android:textSize="30sp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:id="@+id/tv_X"/>
         <ImageView
             android:layout_width="100sp"
             android:layout_height="100sp"
             android:layout_marginTop="15dp"
             android:src="@drawable/rock"
-            android:id="@+id/iv_Gep"
+            android:id="@+id/iv_GepValasztasa"
             android:background="@null"/>
         <TextView
             android:layout_width="wrap_content"
@@ -90,7 +91,7 @@
             android:layout_height="100sp"
             android:layout_marginTop="15dp"
             android:background="@null"
-            android:id="@+id/iv_Jatekos"
+            android:id="@+id/iv_JatekosValasztasa"
             android:src="@drawable/rock"/>
         <TextView
             android:layout_width="wrap_content"
